@@ -8,6 +8,9 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: NuGetAuthenticate@1
+  displayName: 'Authenticate Auzre DevOps NuGet feed'
+
 - task: UseDotNet@2
   displayName: 'Use .NET SDK 6.x'
   inputs:
@@ -32,12 +35,14 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: 'Restore project dependencies'
   inputs:
-    command: 'restore'
+    command: 'custom'
+    custom: 'restore'
     projects:  '**/*.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: 'Build the project - Release'
   inputs:
-    command: 'build'
+    command: 'custom'
+    custom: 'build'
     arguments: '--norestore --configuration Release'
     projects: '**/*.csproj'
