@@ -5,4 +5,4 @@ pool:
 variables:
   buildConfiguration: 'Release'
 steps:
-    - script: dptmet build --configuration $(buildConfiguration) 
+    - script: dotmet build --configuration $(buildConfiguration)
